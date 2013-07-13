@@ -16,5 +16,8 @@
   "gitHead": "b516455eaf0f7d8fb6734b37bf8c1a64e61200b9",
   "bugs": {
     "url": "https://github.com/paulocesar/node-bigbluebutton/issues"
+  },
+  "dependencies": {
+    "xml2json": "*"
   }
 }
