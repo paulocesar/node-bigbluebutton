@@ -23,23 +23,23 @@ bbb.url = 'http://www.reddit.com';
 //   console.log(bbb.toJson(response));
 // });
 
-data = {
-  action: 'search.xml',
-  params: { q: 10 },
-  body: {
-    modules: {
-      module: [
-        {
-          name:'presentation',
-          document:{url:'example.pdf'}
-        }
-      ]
-    }
-  }
-}
-bbb.post(data,function (response){
-  console.log(response + "\n");
-});
+// data = {
+//   action: 'search.xml',
+//   params: { q: 10 },
+//   body: {
+//     modules: {
+//       module: [
+//         {
+//           name:'presentation',
+//           document:{url:'example.pdf'}
+//         }
+//       ]
+//     }
+//   }
+// }
+// bbb.post(data,function (response){
+//   console.log(response + "\n");
+// });
 
 // https://npmjs.org/package/xml2json
 // https://github.com/buglabs/node-xml2json
