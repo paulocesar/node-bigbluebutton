@@ -1,7 +1,7 @@
 node-bigbluebutton
 ==================
 
-Integration between BigBlueButton and Node.js Applications.
+Integration between BigBlueButton server and Node.js Applications. Read the Wiki to learn more (<https://code.google.com/p/bigbluebutton/wiki/API>)
 
 ###Install
 
@@ -33,7 +33,7 @@ Generate a join link:
     
     link = bbb.link(data);
 
-Get meeting list request:
+GET meeting list request:
 
     data = {
       action: 'getMeetings',
@@ -43,7 +43,7 @@ Get meeting list request:
       console.log(response);
     });
     
-Post meeting creation request with a presentation:
+POST meeting creation request with a presentation:
 
     data = {
       action: 'create',
@@ -67,6 +67,18 @@ Post meeting creation request with a presentation:
     bbb.post(data,function (response){
       console.log(response);
     }); 
+    
+POST or GET response example:
+
+    {
+      "response":
+      {
+        "returncode":"SUCCESS",
+        "meetings":{},
+        "messageKey":"noMeetings",
+        "message":"no meetings were found on this server"
+      }
+    }
     
 ###Other BigBlueButton API methods
 <https://code.google.com/p/bigbluebutton/wiki/API#API_Calls>

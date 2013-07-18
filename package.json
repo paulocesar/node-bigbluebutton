@@ -1,6 +1,6 @@
 {
   "name": "bigbluebutton",
-  "version": "0.0.1",
+  "version": "0.5.0",
   "description": "Integration between BigBlueButton and Node.js Applications",
   "main": "index.js",
   "scripts": {
@@ -11,7 +11,7 @@
     "url": "https://github.com/paulocesar/node-bigbluebutton"
   },
   "author": "Paulo Cesar <pauloc062@gmail.com>",
-  "license": "BSD",
+  "license": "MIT",
   "readmeFilename": "README.md",
   "gitHead": "b516455eaf0f7d8fb6734b37bf8c1a64e61200b9",
   "bugs": {
