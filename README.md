@@ -9,7 +9,7 @@ Integration between BigBlueButton and Node.js Applications.
     
 ###Usage
 
-First, you have to setup the server configuration. Run `bbb-conf --salt` to get the **salt** and **url**, then put in your node.js appliction
+First, you have to setup the server configuration. Run `bbb-conf --salt` on server to get the **salt** and **url**, then put in your node.js application
 
     var bbb = require('bigbluebutton);
     
