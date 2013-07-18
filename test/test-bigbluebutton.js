@@ -1,46 +1,70 @@
 var bbb = require('../lib/bigbluebutton');
 
-bbb.salt = '639259d4-9dd8-4b25-bf01-95f9567eaf4b';
-bbb.url = 'localhost';
 
+bbb.salt = 'e4e99cb3b2989d597f2549db2e41ea9e';
+bbb.url = 'http://192.168.1.2/bigbluebutton';
+
+
+//Link generation
 data = {
-  action: 'create',
+  action: 'join',
   params: {
-    name: 'Test Meeting',
-    meetingID: 'abc123',
-    attendeePW: '111222',
-    moderatorPW: '333444'
+    fullName: 'Test Meeting',
+    meetingID: 'exampleaew',
+    password: 'WWoon2G8'
   }
 }
 link = bbb.link(data);
 console.log(link + "\n");
 
-// data = {
-//   action: 'search/.xml',
-//   params: { q: 10 }
-// }
-// bbb.get(data,function (response){
-//   console.log(bbb.toJson(response));
-// });
 
-// data = {
-//   action: 'search.xml',
-//   params: { q: 10 },
-//   body: {
-//     modules: {
-//       module: [
-//         {
-//           name:'presentation',
-//           document:{url:'example.pdf'}
-//         }
-//       ]
-//     }
-//   }
-// }
-// bbb.post(data,function (response){
-//   console.log(bbb.toJson(response) + "\n");
-// });
 
-// https://npmjs.org/package/xml2json
-// https://github.com/buglabs/node-xml2json
-// http://docs.nodejitsu.com/articles/HTTP/clients/how-to-create-a-HTTP-request
+//create meeting with a presentation and list meetings
+data = {
+  action: 'create',
+  params: { 
+    meetingID: 'exampleaew',
+    meetingName: 'Example Aew',
+    moderatorPW: 'exemplo123asd'
+  },
+  body: {
+    modules: {
+      module: [
+        {
+          name:'presentation',
+          document:{url:'http://www.samplepdf.com/sample.pdf'}
+        }
+      ]
+    }
+  }
+}
+bbb.post(data,function (response){
+  console.log(response + "\n");
+
+  data = {
+    action: 'getMeetings',
+  }
+  bbb.get(data,function (response){
+    console.log(response);
+  });
+});
+
+
+//remove specific meeting and list meetings
+data = {
+  action: 'end',
+  params: {
+    meetingID: 'exampleaew',
+    password: "exemplo123asd"
+  }
+}
+bbb.get(data,function (response){
+  console.log(response);
+
+  data = {
+    action: 'getMeetings',
+  }
+  bbb.get(data,function (response){
+    console.log(response);
+  });
+});
