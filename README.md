@@ -5,7 +5,7 @@ Integration between BigBlueButton server and Node.js Applications. Read the Wiki
 
 ###Install
 
-    npm install node-bigbluebutton
+    npm install bigbluebutton
     
 ###Usage
 
