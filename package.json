@@ -18,6 +18,9 @@
     "url": "https://github.com/paulocesar/node-bigbluebutton/issues"
   },
   "dependencies": {
-    "xml2json": "*"
+    "xml2json": "0.3.2"
+  },
+  "devDependencies": {
+    "mocha": "1.12.0"
   }
 }
