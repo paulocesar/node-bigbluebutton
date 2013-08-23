@@ -31,7 +31,9 @@ Generate a join link:
       }
     }
     
-    link = bbb.link(data);
+    bbb.link(data,function(er,link){
+      console.log(link);
+    });
 
 GET meeting list request:
 
@@ -39,7 +41,7 @@ GET meeting list request:
       action: 'getMeetings',
     }
     
-    bbb.get(data,function (response){
+    bbb.request(data,function (er,response){
       console.log(response);
     });
     
@@ -64,7 +66,7 @@ POST meeting creation request with a presentation:
       }
     }
     
-    bbb.post(data,function (response){
+    bbb.request(data,function (er,response){
       console.log(response);
     }); 
     
