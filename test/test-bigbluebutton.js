@@ -1,6 +1,6 @@
 var bbb = require('../lib/bigbluebutton');
 
-
+//TODO tests using mocha
 bbb.salt = 'e4e99cb3b2989d597f2549db2e41ea9e';
 bbb.url = 'http://192.168.1.2/bigbluebutton';
 
