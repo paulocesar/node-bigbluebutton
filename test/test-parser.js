@@ -1,5 +1,5 @@
 var assert = require('assert')
-  , parser = require('./parser');
+  , parser = require('../lib/parser');
 
 /**
  * Obs: We assume xml2json methods're correct

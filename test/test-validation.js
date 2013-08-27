@@ -1,5 +1,5 @@
 var assert = require('assert')
-  , parser = require('./validation');
+  , parser = require('../lib/validation');
 
 /**
  * Obs: We assume xml2json methods're correct
