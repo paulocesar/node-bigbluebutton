@@ -1,22 +1,46 @@
-var bbb = require('../lib/bigbluebutton');
+var assert = require('assert')
+  , bbb = require('../lib/bigbluebutton');
 
-//TODO tests using mocha
 bbb.salt = 'e4e99cb3b2989d597f2549db2e41ea9e';
 bbb.url = 'http://192.168.1.2/bigbluebutton';
 
+describe("bigbluebutton",function() {
+  
+  /**
+   * testing Link
+   */
+  describe("link",function () {
 
-//Link generation
-// data = {
-//   action: 'join',
-//   params: {
-//     fullName: 'Test Meeting',
-//     meetingID: 'exampleaew',
-//     password: 'WWoon2G8'
-//   }
-// }
-// link = bbb.link(data,function(er,link){
-//   console.log(link + "\n");  
-// });
+    it("should return a valid link",function (done) {
+      data = {
+        action: 'join',
+        params: {
+          fullName: 'Test Meeting',
+          meetingID: 'exampleaew',
+          password: 'WWoon2G8'
+        }
+      };
+
+      bbb.link(data,function(err,link){
+        if(err) done(err);
+        assert.equal(link,"http://192.168.1.2/bigbluebutton/api/join?fullName=Test+Meeting&meetingID=exampleaew&password=WWoon2G8&checksum=b62bd20653930a9607050871891ac37017f1a156");
+        done();
+      });
+    })
+
+  })
+
+  /**
+   * testing Request
+   */
+
+   describe("request",function () {
+
+    //TODO
+
+   })
+
+})
 
 
 
