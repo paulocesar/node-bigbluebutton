@@ -17,7 +17,7 @@ describe("Utils", function (){
       assert.equal("http://sample.com/",utils.addSlashIfNeed(link));
     });
 
-  });
+  })
 
 
   describe("getPortAndHost",function () {
@@ -26,4 +26,4 @@ describe("Utils", function (){
 
   })
 
-});
+})
