@@ -9,8 +9,13 @@ describe("parser", function (){
 
 
   describe("toUrl", function () {
-    // TODO
-
+    it("should return GET params",function(){
+      data = {
+        "name": "paulo cesar",
+        "number": 2934 
+      }
+      console.log(parser.toUrl(data));
+    })
   })
 
 })
