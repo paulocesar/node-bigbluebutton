@@ -13,8 +13,8 @@ describe("parser", function (){
       data = {
         "name": "paulo cesar",
         "number": 2934 
-      }
-      console.log(parser.toUrl(data));
+      };
+      assert.equal(parser.toUrl(data),"name=paulo+cesar&number=2934");
     })
   })
 
