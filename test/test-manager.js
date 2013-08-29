@@ -4,25 +4,32 @@ var manager = require('../lib/manager')
 
 describe("Manager",function () {
 
+
+
   var url = "http://192.168.1.2/bigbluebutton";
   var salt = "e4e99cb3b2989d597f2549db2e41ea9e";
 
 
-  describe("add",function () {
+
+
+  describe("addServer",function () {
 
     it("should add server",function () {
-      manager.add({url: url, salt:salt});
+      manager.addServer({url: url, salt:salt});
       assert.equal( true, typeof manager._servers[url] !== 'undefined');
     });
 
     it("shouldn't add a server with the same url",function () {
-      assert.equal( false, manager.add({url: url, salt:salt}));
+      assert.equal( false, manager.addServer({url: url, salt:salt}));
     });
 
   });
 
 
-  describe("get",function () {
+
+
+
+  describe("getServer",function () {
     
     it("should return a valid server",function (done) {
       data = {
@@ -34,13 +41,47 @@ describe("Manager",function () {
         }
       };
 
-      manager.get(url).link(data,function(er,link) {
+      manager.getServer(url).link(data,function(er,link) {
         if(er) done(er);
         assert.equal(link,"http://192.168.1.2/bigbluebutton/api/join?fullName=Test+Meeting&meetingID=exampleaew&password=WWoon2G8&checksum=b62bd20653930a9607050871891ac37017f1a156");
         done();
       });
     });
     
+  });
+
+
+
+
+
+  describe("removeServer", function () {
+
+    it("should return false if server doesnt exists", function () {
+      assert.equal( false, manager.removeServer("http://fakeserver/"));
+    });
+
+    it("should remove the server", function () {
+      var serverUrl = "http://realserver/";
+      //check if doesn't exists
+      assert.equal( true, manager.getServer(serverUrl) == null);
+      //add server
+      manager.addServer({url: serverUrl, salt:"123salt"});
+      //check if exists
+      assert.equal( true, manager.getServer(serverUrl) != null);
+      //remove server
+      assert.equal( true, manager.removeServer(serverUrl));
+      //check if doesn't exists
+      assert.equal( null, manager.getServer(serverUrl));
+    });
+
+    it("should remove all rooms when the server ir removed", function () {
+
+      /*
+       * TODO
+       */
+
+    })
+
   });
 
 
