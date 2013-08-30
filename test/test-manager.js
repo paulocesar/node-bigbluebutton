@@ -74,7 +74,7 @@ describe("Manager",function () {
       assert.equal( null, manager.getServer(serverUrl));
     });
 
-    it("should remove all rooms when the server ir removed", function () {
+    it("should remove all meeting when the server ir removed", function () {
 
       /*
        * TODO
@@ -112,6 +112,18 @@ describe("Manager",function () {
       server = manager._meetings[nameMeeting].server;
       assert.equal( true, typeof manager._servers[server] !== "undefined"); 
     });
+
+  });
+
+  describe("removeMeeting ", function () {
+
+    var nameMeeting = "RemoveMeeting";
+
+    it("should remove meeting if exists", function () {
+      manager.addMeeting(nameMeeting);
+      assert.equal( true, manager.removeMeeting(nameMeeting));
+      assert.equal( false, manager.removeMeeting(nameMeeting));
+    })
 
   });
 
