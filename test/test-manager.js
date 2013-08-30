@@ -87,7 +87,7 @@ describe("Manager",function () {
 
 
 
-  describe("getEmptiestRoom",function() {
+  describe("getEmptiestServer",function() {
     /**
      * TODO test
      */
@@ -96,20 +96,20 @@ describe("Manager",function () {
 
 
 
-  describe("addRoom",function () {
+  describe("addMeeting",function () {
 
-    var nameRoom = "SampleRoom";
+    var nameMeeting = "SampleMeeting";
 
-    it("shouldn't create a room",function () {
-      assert.equal( true, manager.addRoom(nameRoom));
+    it("shouldn't create a meeting",function () {
+      assert.equal( true, manager.addMeeting(nameMeeting));
     });
 
-    it("shouldn't create a duplicated room", function () {
-      assert.equal( false, manager.addRoom(nameRoom));
+    it("shouldn't create a duplicated meeting", function () {
+      assert.equal( false, manager.addMeeting(nameMeeting));
     });
 
-    it("should be associated to one room", function () {
-      server = manager._rooms[nameRoom];
+    it("should be associated to one meeting", function () {
+      server = manager._meetings[nameMeeting].server;
       assert.equal( true, typeof manager._servers[server] !== "undefined"); 
     });
 
