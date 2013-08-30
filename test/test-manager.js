@@ -87,4 +87,33 @@ describe("Manager",function () {
 
 
 
+  describe("getEmptiestRoom",function() {
+    /**
+     * TODO test
+     */
+  })
+
+
+
+
+  describe("addRoom",function () {
+
+    var nameRoom = "SampleRoom";
+
+    it("shouldn't create a room",function () {
+      assert.equal( true, manager.addRoom(nameRoom));
+    });
+
+    it("shouldn't create a duplicated room", function () {
+      assert.equal( false, manager.addRoom(nameRoom));
+    });
+
+    it("should be associated to one room", function () {
+      server = manager._rooms[nameRoom];
+      assert.equal( true, typeof manager._servers[server] !== "undefined"); 
+    });
+
+  });
+
+
 });
