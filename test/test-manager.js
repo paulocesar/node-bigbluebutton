@@ -1,4 +1,5 @@
 var manager = require('../lib/manager')
+  , bigbluebutton = require('../lib/bigbluebutton')
   , assert = require('assert');
 
 
@@ -8,6 +9,10 @@ describe("Manager",function () {
 
   var url = "http://192.168.1.2/bigbluebutton";
   var salt = "e4e99cb3b2989d597f2549db2e41ea9e";
+
+
+  bigbluebutton.url = url;
+  bigbluebutton.salt = salt;
 
 
 
@@ -87,6 +92,7 @@ describe("Manager",function () {
 
 
 
+
   describe("getEmptiestServer",function() {
 
     it("should return the most empty server", function () {
@@ -103,12 +109,18 @@ describe("Manager",function () {
 
     var nameMeeting = "SampleMeeting";
 
-    it("shouldn't create a meeting",function () {
-      assert.equal( true, manager.addMeeting(nameMeeting));
+    it("shouldn't create a meeting",function (done) {
+      manager.addMeeting(nameMeeting,function(er,response){
+        if(er) throw Error("create meeting");
+        done();
+      });
     });
 
-    it("shouldn't create a duplicated meeting", function () {
-      assert.equal( false, manager.addMeeting(nameMeeting));
+    it("shouldn't create a duplicated meeting", function (done) {
+      manager.addMeeting(nameMeeting,function(er,response){
+        if(!er) throw Error("duplicated meeting");
+        done();
+      });
     });
 
     it("should be associated to one meeting", function () {
@@ -122,9 +134,21 @@ describe("Manager",function () {
        */
     });
 
+    it("should add a meeting in the bigblue button server", function (done) {
+      bigbluebutton.request({action: "getMeetings"},function (er, res) {
+        if(er) throw er;
+        assert.equal("SUCCESS",res.response.returncode);
+        assert.equal(1,Object.keys(res.response.meetings).length);
+        done();
+      });
+    });
+
   });
 
-  describe("removeMeeting ", function () {
+
+
+
+  describe("removeMeeting", function () {
 
     var nameMeeting = "RemoveMeeting";
 
@@ -132,6 +156,23 @@ describe("Manager",function () {
       manager.addMeeting(nameMeeting);
       assert.equal( true, manager.removeMeeting(nameMeeting));
       assert.equal( false, manager.removeMeeting(nameMeeting));
+    });
+
+  });
+
+
+
+
+  describe("joinMeeting", function () {
+    var nameMeeting = "SampleMeeting";
+    var nameAttendee = "MyName";
+
+    it("should get the link to add user to meeting", function (done) {
+      manager.joinMeeting(nameMeeting,nameAttendee,function (er,url) {
+        if(er) throw er;
+        console.log(url);
+        done();
+      });
     });
 
   });
