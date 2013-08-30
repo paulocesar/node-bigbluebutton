@@ -80,7 +80,7 @@ describe("Manager",function () {
        * TODO
        */
 
-    })
+    });
 
   });
 
@@ -88,10 +88,13 @@ describe("Manager",function () {
 
 
   describe("getEmptiestServer",function() {
-    /**
-     * TODO test
-     */
-  })
+
+    it("should return the most empty server", function () {
+      /**
+       * TODO
+       */
+    });
+  });
 
 
 
@@ -113,6 +116,12 @@ describe("Manager",function () {
       assert.equal( true, typeof manager._servers[server] !== "undefined"); 
     });
 
+    it("should generate random passowords", function () {
+      /**
+       * TODO
+       */
+    });
+
   });
 
   describe("removeMeeting ", function () {
@@ -123,7 +132,7 @@ describe("Manager",function () {
       manager.addMeeting(nameMeeting);
       assert.equal( true, manager.removeMeeting(nameMeeting));
       assert.equal( false, manager.removeMeeting(nameMeeting));
-    })
+    });
 
   });
 
