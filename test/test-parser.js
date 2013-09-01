@@ -15,7 +15,7 @@ describe("parser", function (){
         "number": 2934 
       };
       assert.equal(parser.toUrl(data),"name=paulo+cesar&number=2934");
-    })
-  })
+    });
+  });
 
-})
+});

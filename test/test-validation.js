@@ -13,34 +13,34 @@ describe("validation", function (){
       data = null;
       valid.bbbParams(data,function(er){
         if(!er) throw Error("Should have an error");
-        done()
-      })
-    })
+        done();
+      });
+    });
 
-  })
+  });
 
   describe("action",function () {
 
     it("should throw without an action",function (done) {
-      data = {}
+      data = {};
       valid.bbbParams(data,function(er){
         if(!er) throw Error("Should have an error");
-        done()
-      })
-    })
+        done();
+      });
+    });
 
     it("should have only letters, numbers, _ and -",function (done) {
       data = {action: "sample_23-1"};
       valid.bbbParams(data,function(er){
         if(er) throw er;
-      })
+      });
       data = {action: "sample_23-1*&!@#"};
       valid.bbbParams(data,function(er){
         if(!er) throw Error("Should have an error");
         done();
-      })
-    })
+      });
+    });
 
-  })
+  });
 
-})
+});

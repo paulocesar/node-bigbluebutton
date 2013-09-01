@@ -26,9 +26,9 @@ describe("bigbluebutton",function() {
         assert.equal(url,"http://192.168.1.2/bigbluebutton/api/join?fullName=Test+Meeting&meetingID=exampleaew&password=WWoon2G8&checksum=b62bd20653930a9607050871891ac37017f1a156");
         done();
       });
-    })
+    });
 
-  })
+  });
 
   /**
    * testing Request
@@ -38,9 +38,9 @@ describe("bigbluebutton",function() {
 
     //TODO
 
-   })
+   });
 
-})
+});
 
 
 //samples for tests

@@ -68,11 +68,11 @@ describe("Manager",function () {
     it("should remove the server", function () {
       var serverUrl = "http://realserver/";
       //check if doesn't exists
-      assert.equal( true, manager.getServer(serverUrl) == null);
+      assert.equal( true, manager.getServer(serverUrl) === null);
       //add server
       manager.addServer({url: serverUrl, salt:"123salt"});
       //check if exists
-      assert.equal( true, manager.getServer(serverUrl) != null);
+      assert.equal( true, manager.getServer(serverUrl) !== null);
       //remove server
       assert.equal( true, manager.removeServer(serverUrl));
       //check if doesn't exists
@@ -170,7 +170,6 @@ describe("Manager",function () {
     it("should get the link to add user to meeting", function (done) {
       manager.joinMeeting(nameMeeting,nameAttendee,function (er,url) {
         if(er) throw er;
-        console.log(url);
         done();
       });
     });
