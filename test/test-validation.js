@@ -7,7 +7,6 @@ var assert = require('assert')
 
 describe("validation", function (){
 
-  // TODO
   describe("data",function () {
     it("should throw a error on null data",function (done) {
       data = null;
