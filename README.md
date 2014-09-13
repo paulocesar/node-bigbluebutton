@@ -49,7 +49,7 @@ bbb.request(data, function (err, data) {
 });
 ```
     
-POST meeting creation request with a presentation. You can use Q with `requestQ`:
+POST meeting creation request with a presentation. You can use [Q](https://github.com/kriskowal/q) with `requestQ`:
 
 ```javascript
 data = {
