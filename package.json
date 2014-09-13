@@ -26,7 +26,6 @@
     "grunt": "*",
     "grunt-contrib-jshint": "*",
     "grunt-contrib-watch": "*",
-    "grunt-simple-mocha": "*",
     "mocha": "*",
     "should": "*"
   }

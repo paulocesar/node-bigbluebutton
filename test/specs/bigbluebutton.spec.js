@@ -61,11 +61,11 @@ describe("bigbluebutton",function() {
         .then(function (r) {
           r.response.returncode.should.eql('SUCCESS');
           r.response.meetingID.should.eql('nodesample333');
-          return testBbb.requestQ({ action: 'getMeetings' })
+          return testBbb.requestQ({ action: 'getMeetings' });
         })
         .then(function (r) {
           r.response.returncode.should.eql('SUCCESS');
-          r.response.meetings.should.an.object
+          r.response.meetings.should.be.instanceof(Array);
 
           done();
         })

@@ -6,23 +6,12 @@ module.exports = function (grunt) {
       options: {
         laxcomma: true
       }
-    },
-    simplemocha: {
-      options: {
-        globals: ['should'],
-        timeout: 3000,
-        ignoreLeaks: false,
-        ui: 'bdd',
-        reporter: 'tap'
-      },
-      all: { src: 'test/**/*.js' }
     }
   });
 
   grunt.loadNpmTasks("grunt-contrib-jshint");
   grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-simple-mocha');
 
   //default tasks
-  grunt.registerTask("default",["jshint","simplemocha"]);
+  grunt.registerTask("default",["jshint"]);
 };
