@@ -12,9 +12,9 @@ Integration between BigBlueButton server and Node.js Applications. Read the Wiki
 First, you have to setup the server configuration. Run `bbb-conf --salt` on server to get the **salt** and **url**, then put in your node.js application
 
 ```javascript
-var BigBlueButton = require('bigbluebutton);
-  , url = 'http://localhost/bigbluebutton';
-  , secret = '99999999999999999999999';
+var BigBlueButton = require('bigbluebutton')
+  , url = 'http://localhost/bigbluebutton'
+  , secret = '99999999999999999999999'
   , bbb = new BigBlueButton(url, secret);
 ```
 
@@ -34,9 +34,7 @@ data = {
   }
 }
 
-bbb.link(data,function(er,link){
-  console.log(link);
-});
+var link = bbb.link(data);
 ```
 
 GET meeting list request:
@@ -46,9 +44,9 @@ data = {
   action: 'getMeetings',
 }
 
-bbb.request(data,function (er,response){
-  console.log(response);
-});
+bbb.request(data)
+  .then(function (response) { console.log(response); });
+  .fail(function (err) { console.log(err); });
 ```
     
 POST meeting creation request with a presentation:
@@ -73,9 +71,9 @@ data = {
   }
 }
 
-bbb.request(data,function (er,response){
-  console.log(response);
-});
+bbb.request(data)
+  .then(function (response) { console.log(response); })
+  .fail(function (err) { console.log(err); });
 ```
     
 POST or GET response example:
