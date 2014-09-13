@@ -1,32 +1,33 @@
 var assert = require('assert')
-  , bbb = require('../../lib/bigbluebutton')
-  , conf = require('../config');
+  , BigBlueButton = require('../../lib/bigbluebutton')
+  , conf = require('../config')
+  , mochaConf = require('../config.template')
+  , util = require('util');
 
-describe("bigbluebutton",function() {
 
-  bbb.salt = conf.secret;
-  bbb.url = conf.url;
-  
+var testBbb = new BigBlueButton(conf.url, conf.secret)
+  , mochaBbb = new BigBlueButton(mochaConf.url, mochaConf.secret)
+  , linkData = {
+      action: 'join',
+      params: {
+        fullName: 'Test Meeting',
+        meetingID: 'exampleaew',
+        password: 'WWoon2G8'
+      }
+    }
+  , linkResult = "http://localhost/bigbluebutton/" + 
+      "api/join?fullName=Test+Meeting&meetingID=exampleaew"+
+      "&password=WWoon2G8&checksum=129a9704cc9d7234aea53ae53f9c9c895aa55a49";
+
+
+describe("bigbluebutton",function() {  
   /**
    * testing Link
    */
   describe("link",function () {
 
-    it("should return a valid link",function (done) {
-      data = {
-        action: 'join',
-        params: {
-          fullName: 'Test Meeting',
-          meetingID: 'exampleaew',
-          password: 'WWoon2G8'
-        }
-      };
-
-      bbb.link(data,function(err,url){
-        if(err) done(err);
-        assert.equal(url,"http://104.131.6.90/bigbluebutton/api/join?fullName=Test+Meeting&meetingID=exampleaew&password=WWoon2G8&checksum=2f0023bf9093a5acc6e619e47aa1e2bd90af3fbc");
-        done();
-      });
+    it("should return a valid link",function () {
+      mochaBbb.link(linkData).should.eql(linkResult);
     });
 
   });
@@ -35,63 +36,64 @@ describe("bigbluebutton",function() {
    * testing Request
    */
 
-   describe("request",function () {
+  describe("request",function () {
 
-    //TODO
+    it("should create a meeting", function (done) {
 
-   });
+      testBbb.request({
+          action: 'create',
+          params: {
+            meetingID: 'nodesample333',
+            meetingName: 'Node Sample',
+            moderatorPW: 'exemplo123asd'
+          },
+          body: {
+            modules: {
+              module: [
+                {
+                  name:'presentation',
+                  document:{url:'http://www.tcpdf.org/examples/example_001.pdf'}
+                }
+              ]
+            }
+          }
+        })
+        .then(function (r) {
+          r.response.returncode.should.eql('SUCCESS');
+          r.response.meetingID.should.eql('nodesample333');
+          return testBbb.request({ action: 'getMeetings' })
+        })
+        .then(function (r) {
+          r.response.returncode.should.eql('SUCCESS');
+          r.response.meetings.should.an.object
+
+          done();
+        })
+        .fail(done);
+    });
+
+
+    it("should destroy a meeting", function (done) {
+
+      testBbb
+        .request({
+          action: 'end',
+          params: {
+            meetingID: 'nodesample333',
+            password: "exemplo123asd"
+          }
+        })
+        .then(function (r) {
+          r.response.returncode.should.eql('SUCCESS');
+          r.response.messageKey.should.eql('sentEndMeetingRequest');
+          
+          done();
+        })
+        .fail(done);
+
+    });
+
+  });
 
 });
 
-
-//samples for tests
-
-//create meeting with a presentation and list meetings
-// data = {
-//   action: 'create',
-//   params: { 
-//     meetingID: 'exampleaew',
-//     meetingName: 'Example Aew',
-//     moderatorPW: 'exemplo123asd'
-//   },
-//   body: {
-//     modules: {
-//       module: [
-//         {
-//           name:'presentation',
-//           document:{url:'http://www.samplepdf.com/sample.pdf'}
-//         }
-//       ]
-//     }
-//   }
-// }
-// bbb.request(data,function (response){
-//   console.log(response + "\n");
-
-//   data = {
-//     action: 'getMeetings',
-//   }
-//   bbb.request(data,function (err,response){
-//     console.log(response);
-//   });
-// });
-
-
-// //remove specific meeting and list meetings
-// data = {
-//   action: 'end',
-//   params: {
-//     meetingID: 'exampleaew',
-//     password: "exemplo123asd"
-//   }
-// }
-// bbb.request(data,function (err,response){
-//   console.log(response);
-
-//   data = {
-//     action: 'getMeetings',
-//   }
-//   bbb.get(data,function (err,response){
-//     console.log(response);
-//   });
-// });
