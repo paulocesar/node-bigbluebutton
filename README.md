@@ -44,12 +44,12 @@ data = {
   action: 'getMeetings',
 }
 
-bbb.request(data)
-  .then(function (response) { console.log(response); });
-  .fail(function (err) { console.log(err); });
+bbb.request(data, function (err, data) {
+  console(err, data);
+});
 ```
     
-POST meeting creation request with a presentation:
+POST meeting creation request with a presentation. You can use Q with `requestQ`:
 
 ```javascript
 data = {
@@ -71,7 +71,7 @@ data = {
   }
 }
 
-bbb.request(data)
+bbb.requestQ(data)
   .then(function (response) { console.log(response); })
   .fail(function (err) { console.log(err); });
 ```

@@ -1,12 +1,12 @@
 var assert = require('assert')
   , BigBlueButton = require('../../lib/bigbluebutton')
   , conf = require('../config')
-  , mochaConf = require('../config.template')
+  , mockConf = require('../config.template')
   , util = require('util');
 
 
 var testBbb = new BigBlueButton(conf.url, conf.secret)
-  , mochaBbb = new BigBlueButton(mochaConf.url, mochaConf.secret)
+  , mockConf = new BigBlueButton(mockConf.url, mockConf.secret)
   , linkData = {
       action: 'join',
       params: {
@@ -27,7 +27,7 @@ describe("bigbluebutton",function() {
   describe("link",function () {
 
     it("should return a valid link",function () {
-      mochaBbb.link(linkData).should.eql(linkResult);
+      mockConf.link(linkData).should.eql(linkResult);
     });
 
   });
@@ -40,7 +40,7 @@ describe("bigbluebutton",function() {
 
     it("should create a meeting", function (done) {
 
-      testBbb.request({
+      testBbb.requestQ({
           action: 'create',
           params: {
             meetingID: 'nodesample333',
@@ -61,7 +61,7 @@ describe("bigbluebutton",function() {
         .then(function (r) {
           r.response.returncode.should.eql('SUCCESS');
           r.response.meetingID.should.eql('nodesample333');
-          return testBbb.request({ action: 'getMeetings' })
+          return testBbb.requestQ({ action: 'getMeetings' })
         })
         .then(function (r) {
           r.response.returncode.should.eql('SUCCESS');
@@ -76,7 +76,7 @@ describe("bigbluebutton",function() {
     it("should destroy a meeting", function (done) {
 
       testBbb
-        .request({
+        .requestQ({
           action: 'end',
           params: {
             meetingID: 'nodesample333',
