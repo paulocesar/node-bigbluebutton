@@ -1,6 +1,6 @@
 var assert = require('assert')
-  , bbb = require('../lib/bigbluebutton')
-  , conf = require('./config');
+  , bbb = require('../../lib/bigbluebutton')
+  , conf = require('../config');
 
 describe("bigbluebutton",function() {
 

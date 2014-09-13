@@ -1,7 +1,7 @@
-var manager = require('../lib/manager')
-  , bigbluebutton = require('../lib/bigbluebutton')
+var manager = require('../../lib/manager')
+  , bigbluebutton = require('../../lib/bigbluebutton')
   , assert = require('assert')
-  , conf = require('./config');
+  , conf = require('../config');
 
 
 describe("Manager",function () {
@@ -15,9 +15,6 @@ describe("Manager",function () {
   bigbluebutton.url = url;
   bigbluebutton.salt = salt;
 
-
-
-
   describe("addServer",function () {
 
     it("should add server",function () {
@@ -30,10 +27,6 @@ describe("Manager",function () {
     });
 
   });
-
-
-
-
 
   describe("getServer",function () {
     
@@ -55,10 +48,6 @@ describe("Manager",function () {
     });
     
   });
-
-
-
-
 
   describe("removeServer", function () {
 
@@ -90,10 +79,6 @@ describe("Manager",function () {
 
   });
 
-
-
-
-
   describe("getEmptiestServer",function() {
 
     it("should return the most empty server", function () {
@@ -102,9 +87,6 @@ describe("Manager",function () {
        */
     });
   });
-
-
-
 
   describe("addMeeting",function () {
 
@@ -146,9 +128,6 @@ describe("Manager",function () {
 
   });
 
-
-
-
   describe("removeMeeting", function () {
 
     var nameMeeting = "RemoveMeeting";
@@ -160,9 +139,6 @@ describe("Manager",function () {
     });
 
   });
-
-
-
 
   describe("joinMeeting", function () {
     var nameMeeting = "SampleMeeting";
@@ -176,6 +152,5 @@ describe("Manager",function () {
     });
 
   });
-
 
 });
