@@ -18,13 +18,15 @@
     "url": "https://github.com/paulocesar/node-bigbluebutton/issues"
   },
   "dependencies": {
-    "xml2json": "0.3.2"
+    "lodash": "^2.4.1",
+    "xml2json": "*"
   },
   "devDependencies": {
-    "mocha": "1.12.0",
-    "grunt": "~0.4.1",
-    "grunt-contrib-jshint": "~0.6.4",
-    "grunt-contrib-watch": "~0.5.3",
-    "grunt-simple-mocha": "~0.4.0"
+    "grunt": "*",
+    "grunt-contrib-jshint": "*",
+    "grunt-contrib-watch": "*",
+    "grunt-simple-mocha": "*",
+    "mocha": "*",
+    "should": "*"
   }
 }

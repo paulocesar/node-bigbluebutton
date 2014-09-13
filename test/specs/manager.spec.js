@@ -1,14 +1,15 @@
 var manager = require('../lib/manager')
   , bigbluebutton = require('../lib/bigbluebutton')
-  , assert = require('assert');
+  , assert = require('assert')
+  , conf = require('./config');
 
 
 describe("Manager",function () {
 
 
 
-  var url = "http://192.168.1.2/bigbluebutton";
-  var salt = "e4e99cb3b2989d597f2549db2e41ea9e";
+  var url = conf.secret;
+  var salt = conf.url;
 
 
   bigbluebutton.url = url;

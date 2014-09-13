@@ -1,10 +1,11 @@
 var assert = require('assert')
-  , bbb = require('../lib/bigbluebutton');
+  , bbb = require('../lib/bigbluebutton')
+  , conf = require('./config');
 
 describe("bigbluebutton",function() {
 
-  bbb.salt = 'e4e99cb3b2989d597f2549db2e41ea9e';
-  bbb.url = 'http://192.168.1.2/bigbluebutton';
+  bbb.salt = conf.secret;
+  bbb.url = conf.url;
   
   /**
    * testing Link
@@ -23,7 +24,7 @@ describe("bigbluebutton",function() {
 
       bbb.link(data,function(err,url){
         if(err) done(err);
-        assert.equal(url,"http://192.168.1.2/bigbluebutton/api/join?fullName=Test+Meeting&meetingID=exampleaew&password=WWoon2G8&checksum=b62bd20653930a9607050871891ac37017f1a156");
+        assert.equal(url,"http://104.131.6.90/bigbluebutton/api/join?fullName=Test+Meeting&meetingID=exampleaew&password=WWoon2G8&checksum=2f0023bf9093a5acc6e619e47aa1e2bd90af3fbc");
         done();
       });
     });
