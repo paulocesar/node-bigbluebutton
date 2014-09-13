@@ -11,76 +11,86 @@ Integration between BigBlueButton server and Node.js Applications. Read the Wiki
 
 First, you have to setup the server configuration. Run `bbb-conf --salt` on server to get the **salt** and **url**, then put in your node.js application
 
-    var bbb = require('bigbluebutton);
-    
-    bbb.salt = '99999999999999999999999';
-    bbb.url = 'http://localhost/bigbluebutton';
-    
+```javascript
+var BigBlueButton = require('bigbluebutton);
+  , url = 'http://localhost/bigbluebutton';
+  , secret = '99999999999999999999999';
+  , bbb = new BigBlueButton(url, secret);
+```
+
 Now you can access the BigBlueButton API easely. You can see some example bellow.
 
 ###Examples
 
 Generate a join link:
 
-    data = {
-      action: 'join',
-      params: {
-        fullName: 'Test Meeting',
-        meetingID: 'exampleaew',
-        password: 'WWoon2G8'
-      }
-    }
-    
-    bbb.link(data,function(er,link){
-      console.log(link);
-    });
+```javascript
+data = {
+  action: 'join',
+  params: {
+    fullName: 'Test Meeting',
+    meetingID: 'exampleaew',
+    password: 'WWoon2G8'
+  }
+}
+
+bbb.link(data,function(er,link){
+  console.log(link);
+});
+```
 
 GET meeting list request:
 
-    data = {
-      action: 'getMeetings',
-    }
-    
-    bbb.request(data,function (er,response){
-      console.log(response);
-    });
+```javascript
+data = {
+  action: 'getMeetings',
+}
+
+bbb.request(data,function (er,response){
+  console.log(response);
+});
+```
     
 POST meeting creation request with a presentation:
 
-    data = {
-      action: 'create',
-      params: { 
-        meetingID: 'exampleaew',
-        meetingName: 'Example Aew',
-        moderatorPW: 'exemplo123asd'
-      },
-      body: {
-        modules: {
-          module: [
-            {
-              name:'presentation',
-              document:{url:'http://www.samplepdf.com/sample.pdf'}
-            }
-          ]
+```javascript
+data = {
+  action: 'create',
+  params: { 
+    meetingID: 'exampleaew',
+    meetingName: 'Example Aew',
+    moderatorPW: 'exemplo123asd'
+  },
+  body: {
+    modules: {
+      module: [
+        {
+          name:'presentation',
+          document:{url:'http://www.samplepdf.com/sample.pdf'}
         }
-      }
+      ]
     }
-    
-    bbb.request(data,function (er,response){
-      console.log(response);
-    }); 
+  }
+}
+
+bbb.request(data,function (er,response){
+  console.log(response);
+});
+```
     
 POST or GET response example:
 
-    {
-      "response":
-      {
-        "returncode":"SUCCESS",
-        "meetings":{},
-        "messageKey":"noMeetings",
-        "message":"no meetings were found on this server"
-      }
-    }
+```javascript
+{
+  "response":
+  {
+    "returncode":"SUCCESS",
+    "meetings":{},
+    "messageKey":"noMeetings",
+    "message":"no meetings were found on this server"
+  }
+}
+```
     
 ###Other BigBlueButton API methods
 <https://code.google.com/p/bigbluebutton/wiki/API#API_Calls>
