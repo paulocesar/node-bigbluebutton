@@ -101,5 +101,5 @@ POST or GET response example:
 ###Thanks
 
 * <https://github.com/buglabs/node-xml2json>
-# <https://github.com/kriskowal/q>
+* <https://github.com/kriskowal/q>
 * <http://docs.nodejitsu.com/articles/HTTP/clients/how-to-create-a-HTTP-request>
