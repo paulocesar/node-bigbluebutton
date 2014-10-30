@@ -26,9 +26,9 @@ describe("Utils", function (){
       var link = "http://sample:10/hello/world",
           data = utils.hostData(link);
 
-          data.url.should.eql('sample');
+          data.host.should.eql('sample');
           data.port.should.eql('10');
-          data.path.should.eql('hello/world');
+          data.path.should.eql('/hello/world');
 
     });
   });

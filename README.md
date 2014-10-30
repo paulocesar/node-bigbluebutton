@@ -12,10 +12,10 @@ Integration between BigBlueButton server and Node.js Applications. Read the Wiki
 First, you have to setup the server configuration. Run `bbb-conf --salt` on server to get the **salt** and **url**, then put in your node.js application
 
 ```javascript
-var BigBlueButton = require('bigbluebutton')
-  , url = 'http://localhost/bigbluebutton'
-  , secret = '99999999999999999999999'
-  , bbb = new BigBlueButton(url, secret);
+  var bbb = require('bigbluebutton');
+  bbb.url = 'http://localhost/bigbluebutton';
+  bbb.salt = '99999999999999999999999';
+
 ```
 
 Now you can access the BigBlueButton API easely. You can see some example bellow.
@@ -49,7 +49,7 @@ bbb.request(data, function (err, data) {
 });
 ```
     
-POST meeting creation request with a presentation. You can use [Q](https://github.com/kriskowal/q) with `requestQ`:
+POST meeting creation request with a presentation. If you're not a callback fan, node-bigbluebutton also returns promises:
 
 ```javascript
 data = {
@@ -71,7 +71,7 @@ data = {
   }
 }
 
-bbb.requestQ(data)
+bbb.request(data)
   .then(function (response) { console.log(response); })
   .fail(function (err) { console.log(err); });
 ```
@@ -96,8 +96,10 @@ POST or GET response example:
 ###Contributors
 
 * Paulo César (<pauloc062@gmail.com>)
+* Sávio Lucena (<saviogl@gmail.com>)
 
 ###Thanks
 
 * <https://github.com/buglabs/node-xml2json>
+# <https://github.com/kriskowal/q>
 * <http://docs.nodejitsu.com/articles/HTTP/clients/how-to-create-a-HTTP-request>

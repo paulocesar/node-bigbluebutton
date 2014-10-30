@@ -1,13 +1,12 @@
 var assert = require('assert')
-  , BigBlueButton = require('../../lib/bigbluebutton')
-  , conf = require('../config')
-  , mockConf = require('../config.template')
+  , bbb = require('../../lib/bigbluebutton')
+  , conf = require('../config.js')
   , util = require('util');
 
+  bbb.url = conf.url;
+  bbb.salt = conf.secret;
 
-var testBbb = new BigBlueButton(conf.url, conf.secret)
-  , mockConf = new BigBlueButton(mockConf.url, mockConf.secret)
-  , linkData = {
+var linkData = {
       action: 'join',
       params: {
         fullName: 'Test Meeting',
@@ -15,9 +14,9 @@ var testBbb = new BigBlueButton(conf.url, conf.secret)
         password: 'WWoon2G8'
       }
     }
-  , linkResult = "http://localhost/bigbluebutton/" + 
+  , linkResult = conf.url + 
       "api/join?fullName=Test+Meeting&meetingID=exampleaew"+
-      "&password=WWoon2G8&checksum=129a9704cc9d7234aea53ae53f9c9c895aa55a49";
+      "&password=WWoon2G8&checksum=45bfd4a3049593fdc71df23d38fd5d357f82148b"; // Remember to manually generate your expected SHA1 checksum to test against your program
 
 
 describe("bigbluebutton",function() {  
@@ -27,7 +26,7 @@ describe("bigbluebutton",function() {
   describe("link",function () {
 
     it("should return a valid link",function () {
-      mockConf.link(linkData).should.eql(linkResult);
+      bbb.link(linkData).should.eql(linkResult);
     });
 
   });
@@ -40,7 +39,7 @@ describe("bigbluebutton",function() {
 
     it("should create a meeting", function (done) {
 
-      testBbb.requestQ({
+      bbb.request({
           action: 'create',
           params: {
             meetingID: 'nodesample333',
@@ -61,11 +60,11 @@ describe("bigbluebutton",function() {
         .then(function (r) {
           r.response.returncode.should.eql('SUCCESS');
           r.response.meetingID.should.eql('nodesample333');
-          return testBbb.requestQ({ action: 'getMeetings' });
+          return bbb.request({ action: 'getMeetings' });
         })
         .then(function (r) {
           r.response.returncode.should.eql('SUCCESS');
-          r.response.meetings.should.be.instanceof(Array);
+          r.response.meetings.should.have.property('meeting');
 
           done();
         })
@@ -75,8 +74,8 @@ describe("bigbluebutton",function() {
 
     it("should destroy a meeting", function (done) {
 
-      testBbb
-        .requestQ({
+      bbb
+        .request({
           action: 'end',
           params: {
             meetingID: 'nodesample333',

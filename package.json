@@ -11,12 +11,20 @@
     "url": "https://github.com/paulocesar/node-bigbluebutton"
   },
   "author": "Paulo Cesar <pauloc062@gmail.com>",
+  "contributors" : [{
+    "name": "Savio Lucena",
+    "email": "saviogl@gmail.com"
+  }],
   "license": "MIT",
   "readmeFilename": "README.md",
   "gitHead": "b516455eaf0f7d8fb6734b37bf8c1a64e61200b9",
   "bugs": {
     "url": "https://github.com/paulocesar/node-bigbluebutton/issues"
   },
+  "keywords": [
+    "bigbluebutton",
+    "bbb"
+  ],
   "dependencies": {
     "lodash": "^2.4.1",
     "q": "^1.0.1",
