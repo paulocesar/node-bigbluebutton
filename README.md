@@ -6,16 +6,17 @@ Integration between BigBlueButton server and Node.js Applications. Read the Wiki
 ###Install
 
     npm install bigbluebutton
-    
+
 ###Usage
 
 First, you have to setup the server configuration. Run `bbb-conf --salt` on server to get the **salt** and **url**, then put in your node.js application
 
 ```javascript
-  var bbb = require('bigbluebutton');
-  bbb.url = 'http://localhost/bigbluebutton';
-  bbb.salt = '99999999999999999999999';
+  var Bbb = require('bigbluebutton'),
+      url = 'http://localhost/bigbluebutton',
+      salt = '99999999999999999999999';
 
+  var bbb = new Bbb(url, salt);
 ```
 
 Now you can access the BigBlueButton API easely. You can see some example bellow.
@@ -48,13 +49,13 @@ bbb.request(data, function (err, data) {
   console(err, data);
 });
 ```
-    
+
 POST meeting creation request with a presentation. If you're not a callback fan, node-bigbluebutton also returns promises:
 
 ```javascript
 data = {
   action: 'create',
-  params: { 
+  params: {
     meetingID: 'exampleaew',
     meetingName: 'Example Aew',
     moderatorPW: 'exemplo123asd'
@@ -75,7 +76,7 @@ bbb.request(data)
   .then(function (response) { console.log(response); })
   .fail(function (err) { console.log(err); });
 ```
-    
+
 POST or GET response example:
 
 ```javascript
@@ -89,7 +90,7 @@ POST or GET response example:
   }
 }
 ```
-    
+
 ###Other BigBlueButton API methods
 <https://code.google.com/p/bigbluebutton/wiki/API#API_Calls>
 
