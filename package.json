@@ -1,6 +1,6 @@
 {
   "name": "bigbluebutton",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "Integration between BigBlueButton and Node.js Applications",
   "main": "index.js",
   "scripts": {
